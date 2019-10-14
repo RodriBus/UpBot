@@ -1,0 +1,10 @@
+﻿{
+  "profiles": {
+    "RodriBus.UpBot.Worker": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
