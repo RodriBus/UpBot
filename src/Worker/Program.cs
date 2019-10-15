@@ -4,6 +4,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RodriBus.UpBot.Application.Extensions;
+using Serilog;
 
 namespace RodriBus.UpBot.Worker
 {
@@ -30,6 +31,10 @@ namespace RodriBus.UpBot.Worker
                 services.AddApplicationServices(hostContext.Configuration);
 
                 services.AddHostedService<Worker>();
-            });
+            })
+            .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
+                .ReadFrom.Configuration(hostingContext.Configuration)
+            , writeToProviders: true)
+            ;
     }
 }
