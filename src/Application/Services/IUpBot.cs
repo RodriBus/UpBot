@@ -14,6 +14,16 @@ namespace RodriBus.UpBot.Application.Services
         /// <summary>
         /// Prints self information into log.
         /// </summary>
-        Task LogSelfAsync(CancellationToken stoppingToken);
+        Task ExecuteBotAsync(CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Reports startup to configured chat.
+        /// </summary>
+        Task ReportStartupAsync(CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Reports shutting down to configured chat.
+        /// </summary>
+        Task ReportShutdownAsync(CancellationToken cancellationToken = default);
     }
 }

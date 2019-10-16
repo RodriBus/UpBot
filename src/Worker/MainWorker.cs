@@ -13,15 +13,15 @@ namespace RodriBus.UpBot.Worker
     /// <summary>
     /// Main worker class.
     /// </summary>
-    public class Worker : BackgroundService
+    public class MainWorker : BackgroundService
     {
-        private readonly ILogger<Worker> Logger;
+        private readonly ILogger<MainWorker> Logger;
         private readonly IUpBot Bot;
 
         /// <summary>
         /// Creates an instance.
         /// </summary>
-        public Worker(ILogger<Worker> logger, IUpBot bot)
+        public MainWorker(ILogger<MainWorker> logger, IUpBot bot)
         {
             Logger = logger;
             Bot = bot;
@@ -35,9 +35,19 @@ namespace RodriBus.UpBot.Worker
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                await Bot.LogSelfAsync(stoppingToken).ConfigureAwait(false);
+                await Bot.ReportStartupAsync(stoppingToken).ConfigureAwait(false);
+                await Bot.ExecuteBotAsync(stoppingToken).ConfigureAwait(false);
                 await Task.Delay(TimeSpan.FromMinutes(10), stoppingToken).ConfigureAwait(false);
             }
+        }
+
+        /// <summary>
+        /// Triggered when the application host is performing a graceful shutdown.
+        /// </summary>
+        /// <param name="cancellationToken">Indicates that the shutdown process should no longer be graceful.</param>
+        public override async Task StopAsync(CancellationToken cancellationToken)
+        {
+            await Bot.ReportShutdownAsync(cancellationToken).ConfigureAwait(false);
         }
     }
 }

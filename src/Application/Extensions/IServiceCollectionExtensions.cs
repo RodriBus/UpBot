@@ -22,6 +22,8 @@ namespace RodriBus.UpBot.Application.Extensions
 
             services.AddHttpClient<IUpBot, Services.UpBot>();
 
+            services.AddTransient<IConfigurationManager, FileConfigurationManager>();
+
             return services;
         }
     }

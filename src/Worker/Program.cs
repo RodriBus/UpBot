@@ -31,7 +31,7 @@ namespace RodriBus.UpBot.Worker
             {
                 services.AddApplicationServices(hostContext.Configuration);
 
-                services.AddHostedService<Worker>();
+                services.AddHostedService<MainWorker>();
             })
             .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
                 .ReadFrom.Configuration(hostingContext.Configuration)
