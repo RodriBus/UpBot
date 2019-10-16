@@ -26,6 +26,7 @@ namespace RodriBus.UpBot.Worker
         /// </summary>
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+            .UseWindowsService()
             .ConfigureServices((hostContext, services) =>
             {
                 services.AddApplicationServices(hostContext.Configuration);
