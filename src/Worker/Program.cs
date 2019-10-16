@@ -11,7 +11,7 @@ namespace RodriBus.UpBot.Worker
     /// <summary>
     /// Application main class.
     /// </summary>
-    public class Program
+    public static class Program
     {
         /// <summary>
         /// Application entry point
