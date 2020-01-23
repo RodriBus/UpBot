@@ -1,6 +1,7 @@
 // Copyright (c) 2019 Diego Rodríguez Suárez-Bustillo <diego@rodribus.com>. Licensed under the MIT Licence.
 // See the LICENSE file in the repository root for full licence text.
 
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RodriBus.UpBot.Application.Extensions;
@@ -45,6 +46,14 @@ namespace RodriBus.UpBot.Worker
                 throw new NotSupportedException("Operative system not suported: " +
                    $"${RuntimeInformation.OSDescription} ${RuntimeInformation.OSArchitecture}");
             }
+
+            host.ConfigureAppConfiguration((hostingContext, config) =>
+            {
+                if (hostingContext.HostingEnvironment.IsDevelopment())
+                {
+                    config.AddUserSecrets<MainWorker>();
+                }
+            });
 
             // Configure container services
             host.ConfigureServices((hostContext, services) =>
