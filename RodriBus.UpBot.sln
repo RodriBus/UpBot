@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RodriBus.UpBot.Worker", "src\Worker\RodriBus.UpBot.Worker.csproj", "{B446DF95-6540-4D99-997C-8F42AB4FFD23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RodriBus.UpBot.Worker", "src\Worker\RodriBus.UpBot.Worker.csproj", "{B446DF95-6540-4D99-997C-8F42AB4FFD23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RodriBus.UpBot.Application", "src\Application\RodriBus.UpBot.Application.csproj", "{DB134884-4460-4D0F-BCBB-3DC2C7A8B6E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RodriBus.UpBot.Application", "src\Application\RodriBus.UpBot.Application.csproj", "{DB134884-4460-4D0F-BCBB-3DC2C7A8B6E1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "build\_build.csproj", "{2905E6F7-A205-4EAF-B3BB-33D4C7E916FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{B446DF95-6540-4D99-997C-8F42AB4FFD23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -44,5 +43,23 @@ Global
 		{DB134884-4460-4D0F-BCBB-3DC2C7A8B6E1}.Release|x64.Build.0 = Release|Any CPU
 		{DB134884-4460-4D0F-BCBB-3DC2C7A8B6E1}.Release|x86.ActiveCfg = Release|Any CPU
 		{DB134884-4460-4D0F-BCBB-3DC2C7A8B6E1}.Release|x86.Build.0 = Release|Any CPU
+		{2905E6F7-A205-4EAF-B3BB-33D4C7E916FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2905E6F7-A205-4EAF-B3BB-33D4C7E916FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2905E6F7-A205-4EAF-B3BB-33D4C7E916FE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2905E6F7-A205-4EAF-B3BB-33D4C7E916FE}.Debug|x64.Build.0 = Debug|Any CPU
+		{2905E6F7-A205-4EAF-B3BB-33D4C7E916FE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2905E6F7-A205-4EAF-B3BB-33D4C7E916FE}.Debug|x86.Build.0 = Debug|Any CPU
+		{2905E6F7-A205-4EAF-B3BB-33D4C7E916FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2905E6F7-A205-4EAF-B3BB-33D4C7E916FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2905E6F7-A205-4EAF-B3BB-33D4C7E916FE}.Release|x64.ActiveCfg = Release|Any CPU
+		{2905E6F7-A205-4EAF-B3BB-33D4C7E916FE}.Release|x64.Build.0 = Release|Any CPU
+		{2905E6F7-A205-4EAF-B3BB-33D4C7E916FE}.Release|x86.ActiveCfg = Release|Any CPU
+		{2905E6F7-A205-4EAF-B3BB-33D4C7E916FE}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {45254FC7-98CB-4D5D-8578-79A8050D3ED9}
 	EndGlobalSection
 EndGlobal
