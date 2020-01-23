@@ -5,6 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RodriBus.UpBot.Application.Extensions;
 using Serilog;
+using System;
+using System.Runtime.InteropServices;
 
 namespace RodriBus.UpBot.Worker
 {
@@ -24,18 +26,40 @@ namespace RodriBus.UpBot.Worker
         /// <summary>
         /// Creates and configure the host builder.
         /// </summary>
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-            .UseWindowsService()
-            .ConfigureServices((hostContext, services) =>
-            {
-                services.AddApplicationServices(hostContext.Configuration);
+        public static IHostBuilder CreateHostBuilder(string[] args)
+        {
+            // Create Host
+            var host = Host.CreateDefaultBuilder(args);
 
-                services.AddHostedService<MainWorker>();
-            })
-            .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
+            // Determine host lifetime based on OS
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                host.UseWindowsService();
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                host.UseSystemd();
+            }
+            else
+            {
+                throw new NotSupportedException("Operative system not suported: " +
+                   $"${RuntimeInformation.OSDescription} ${RuntimeInformation.OSArchitecture}");
+            }
+
+            // Configure container services
+            host.ConfigureServices((hostContext, services) =>
+             {
+                 services.AddApplicationServices(hostContext.Configuration);
+
+                 services.AddHostedService<MainWorker>();
+             });
+
+            // Set serilog as logging provider
+            host.UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
                 .ReadFrom.Configuration(hostingContext.Configuration)
-            , writeToProviders: true)
-            ;
+            , writeToProviders: true);
+
+            return host;
+        }
     }
 }
