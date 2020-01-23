@@ -40,7 +40,7 @@ namespace RodriBus.UpBot.Application.Services
         }
 
         /// <summary>
-        /// Prints self information into log.
+        /// Starts bot listening tasks.
         /// </summary>
         public async Task ExecuteBotAsync(CancellationToken cancellationToken = default)
         {
@@ -64,6 +64,10 @@ namespace RodriBus.UpBot.Application.Services
                     chatId: config.ChatId,
                     text: $"{EMOJI_ON} Hey! I'm starting up."
                     ).ConfigureAwait(false);
+            }
+            else
+            {
+                Logger.LogWarning("UpBot chat to report was not found.");
             }
         }
 

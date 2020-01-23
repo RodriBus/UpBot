@@ -12,7 +12,7 @@ namespace RodriBus.UpBot.Application.Services
     public interface IUpBot
     {
         /// <summary>
-        /// Prints self information into log.
+        /// Starts bot listening tasks.
         /// </summary>
         Task ExecuteBotAsync(CancellationToken cancellationToken = default);
 

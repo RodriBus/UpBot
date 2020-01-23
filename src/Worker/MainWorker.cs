@@ -28,17 +28,22 @@ namespace RodriBus.UpBot.Worker
         }
 
         /// <summary>
+        /// Triggered when the application host is ready to start the service.
+        /// </summary>
+        /// <param name="cancellationToken">Indicates that the start process has been aborted.</param>
+        public override async Task StartAsync(CancellationToken cancellationToken)
+        {
+            await base.StartAsync(cancellationToken).ConfigureAwait(false);
+            await Bot.ReportStartupAsync(cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
         /// This method is called when the <see cref="IHostedService" /> starts. The implementation should return a task that represents
         /// the lifetime of the long running operation(s) being performed.
         /// </summary>
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            while (!stoppingToken.IsCancellationRequested)
-            {
-                await Bot.ReportStartupAsync(stoppingToken).ConfigureAwait(false);
-                await Bot.ExecuteBotAsync(stoppingToken).ConfigureAwait(false);
-                await Task.Delay(TimeSpan.FromMinutes(10), stoppingToken).ConfigureAwait(false);
-            }
+            await Bot.ExecuteBotAsync(stoppingToken).ConfigureAwait(false);
         }
 
         /// <summary>
